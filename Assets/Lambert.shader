@@ -38,10 +38,15 @@
 						UNITY_MATRIX_V, // カメラ座標に変換（View）
 						mul(
 							unity_ObjectToWorld, // ワールド座標に変換（Model）
-							float4(v.vertex.xyz, 1.0) // 頂点の座標
+							float4(v.vertex.xyz, 1.0) // 頂点の座標、最後の1はおまじない
 						)
 					)
 				);
+				// ↑ 書き下したけど、Unityの場合、↓ の関数で同様のことができる
+				// o.vertex = UnityObjectToClipPos(v.vertex);
+				//
+				// Unity のシェーダーのソースは公開されているので、困ったら探す
+				// https://github.com/TwoTailsGames/Unity-Built-in-Shaders/blob/bab22c6c04df30e674a47f225e946072c86222cb/CGIncludes/UnityShaderUtilities.cginc#L32-L43
 
 				// 法線の座標変換をする（ややこしいので説明しない）
 				o.normal = normalize(mul(v.normal, (float3x3)unity_WorldToObject));
