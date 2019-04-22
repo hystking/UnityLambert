@@ -69,7 +69,7 @@
 
 				// 塗る色を return する
 				// 最後の1はアルファ（透明度）
-				return float4(color, 1);
+				return float4(color * diffuse, 1);
 			}
 
 			ENDCG // ここまでシェーダープログラムという意味
